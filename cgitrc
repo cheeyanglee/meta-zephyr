@@ -1,0 +1,3 @@
+desc=Layer to support building of Zephyr images
+section=-Yocto Metadata Layers - Other Layers
+hide=0
