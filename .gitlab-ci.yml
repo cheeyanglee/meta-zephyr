@@ -129,7 +129,6 @@ qemu-cortex-a9:
   parallel:
     matrix:
       - TOOLCHAIN: [default, zephyr-toolchain]
-        TESTING: testimage
 
 qemu-cortex-m0:
   extends: .build
