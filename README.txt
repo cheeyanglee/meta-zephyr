@@ -9,9 +9,9 @@ Prerequisites:
 ==============
 
 This layer depends on:
-    Yocto distro (master)
+    Yocto distro (walnascar)
         git://git.yoctoproject.org/poky
-    Python layer (meta-openembedded/meta-python)
+    Python layer (meta-openembedded/meta-python) (walnascar)
         git://git.openembedded.org/meta-openembedded
 
 Add "meta-openembedded/meta-oe" to BBLAYERS
