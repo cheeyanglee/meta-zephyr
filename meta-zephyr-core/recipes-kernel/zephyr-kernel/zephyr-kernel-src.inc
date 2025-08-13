@@ -9,7 +9,6 @@ inherit cmake
 # having an explicit path to the patches directory, will make bitbake fail to
 # find the patch(es) in SRC_URI.
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
-S = "${WORKDIR}/git"
 
 # Default to a stable version
 PREFERRED_VERSION_zephyr-kernel ??= "4.1.0"
