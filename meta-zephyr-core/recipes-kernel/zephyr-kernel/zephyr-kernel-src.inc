@@ -10,6 +10,4 @@ inherit cmake
 # find the patch(es) in SRC_URI.
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
-# Default to a stable version
-PREFERRED_VERSION_zephyr-kernel ??= "4.1.0"
 require recipes-kernel/zephyr-kernel/zephyr-kernel-src-${PREFERRED_VERSION_zephyr-kernel}.inc
