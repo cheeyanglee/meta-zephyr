@@ -146,6 +146,7 @@ SRC_URI_ZEPHYR_ZCBOR ?= "git://github.com/zephyrproject-rtos/zcbor;protocol=http
 
 SRC_URI_PATCHES ?= "\
     file://0001-v4.2.0-x86-fix-efi-binary-generation-issue-in-cross-compila.patch;patchdir=zephyr \
+    file://0001-fix-unable-find-gen_kobject_list.py.patch;patchdir=zephyr \
 "
 
 SRC_URI = "\
