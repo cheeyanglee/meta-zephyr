@@ -6,75 +6,110 @@ This layer enables building Zephyr using Yocto Project.
 
 This layer depends on:
 
-	URI: https://git.yoctoproject.org/poky
-	layers: meta
-	branch: master
+    URI: https://git.openembedded.org/bitbake
+    branch: master
 
-	URI: https://git.openembedded.org/meta-openembedded
-	layers: meta-oe, meta-python
-	branch: master
+    URI: https://git.openembedded.org/openembedded-core
+    layers: meta
+    branch: master
+
+    URI: https://git.openembedded.org/meta-openembedded
+    layers: meta-oe, meta-python
+    branch: master
 
 ## Building Zephyr Images via bitbake recipes
 
-More detailed and up-to-date information can be found here:
+### Quick Build
 
-https://wiki.yoctoproject.org/wiki/TipsAndTricks/BuildingZephyrImages
+Ensure your build host meets the
+[Yocto Project system requirements](https://docs.yoctoproject.org/ref-manual/system-requirements.html)
+and follow the
+[Quick Build setup guide](https://docs.yoctoproject.org/brief-yoctoprojectqs/index.html#yocto-project-quick-build)
+to setup the host enviroment.
 
-> **Pre-requisites:**
-1. Refer [Yocto Project Quick Build]( https://docs.yoctoproject.org/dev/singleindex.html#yocto-project-quick-build) documentation.
+Clone the following repos:
 
-2. Clone and add following layers to BBLAYERS
-    * meta-openembedded/meta-oe
-    * meta-openembedded/meta-python
-    * meta-zephyr-core
-    * meta-zephyr-bsp
-```
-    $ mkdir sources
-    $ git clone -b <release-branch> https://git.yoctoproject.org/poky
-    $ git clone -b <branch-name> https://git.openembedded.org/meta-openembedded
-    $ git clone -b <branch-name> https://git.yoctoproject.org/meta-zephyr
-    $ source poky/oe-init-build-env
-    $ bitbake-layers add-layer ../meta-openembedded/meta-oe
-    $ bitbake-layers add-layer ../meta-openembedded/meta-python
-    $ bitbake-layers add-layer ../meta-zephyr/meta-zephyr-core
-    $ bitbake-layers add-layer ../meta-zephyr/meta-zephyr-bsp
+- bitbake
+- meta-zephyr
+
+```console
+git clone https://git.openembedded.org/bitbake
+git clone https://git.yoctoproject.org/meta-zephyr
 ```
 
-### Building and Running Zephyr Samples
+Initialize default build configuration with bitbake-setup:
 
-You can build Zephyr samples. There are several sample recipes.
-
-To use the Yocto toolchain, modify local conf by adding:
-```
-    DISTRO = "zephyr"
-```
-
-To use the Zephyr pre-built toolchain, modify local conf by adding:
-```
-    ZEPHYR_TOOLCHAIN_VARIANT = "zephyr"
+```console
+./bitbake/bin/bitbake-setup init --non-interactive \
+  ./meta-zephyr/zephyr-master.conf.json \
+  zephyr-default distro/zephy machine/qemu-x86
 ```
 
-For example, to build the Zephyr "philosophers" sample:
+Alternatively, run bitbake-setup with interactive mode to choose for
+different configuration:
+
+```console
+./bitbake/bin/bitbake-setup init ./meta-zephyr/zephyr-master.conf.json
 ```
-    $ MACHINE=qemu-x86 bitbake zephyr-philosophers
+
+Initialize build environment
+
+```console
+source ./bitbake-builds/zephyr-master/build/init-build-env
+```
+
+build the Zephyr "helloworld" sample:
+
+```console
+bitbake zephyr-helloworld
+```
+
+### Building and Running other Zephyr Samples
+
+You can build other Zephyr samples. There are several sample recipes
+[available here](https://git.yoctoproject.org/meta-zephyr/tree/meta-zephyr-core/recipes-kernel/zephyr-kernel).
+
+For example, to build the
+[Zephyr "philosophers" sample](https://git.yoctoproject.org/meta-zephyr/tree/meta-zephyr-core/recipes-kernel/zephyr-kernel/zephyr-philosophers.bb):
+
+```console
+bitbake zephyr-philosophers
 ```
 
 You can then run the created "philosophers" image in qemu:
-```
-    $ runqemu qemu-x86
+
+```console
+runqemu
 ```
 
-The same sample, for ARM image:
-```
-    $ MACHINE=qemu-cortex-m3 bitbake zephyr-philosophers
-    $ runqemu qemu-cortex-m3
+The same sample can be built for other machines/boards, for example ARM Cortex-M3:
+
+```console
+bitbake-config-build enable-fragment machine/qemu-cortex-m3
+bitbake zephyr-philosophers
+runqemu
 ```
 
-The same sample, for Nios2 image:
+Alternatively, you can use the MACHINE variable to define the target machine,
+you will need to disable the machine fragment to prevent conflict:
+
+```console
+bitbake-config-build disable-fragment machine/qemu-x86
+MACHINE=qemu-cortex-m3 bitbake zephyr-philosophers
+runqemu qemu-cortex-m3
 ```
-    $ MACHINE=qemu-nios2 bitbake zephyr-philosophers
-    $ runqemu qemu-nios2
+
+The default configuration (with `zephyr` DISTRO) uses the Yocto Project toolchain
+to compile Zephyr applications. To use the Zephyr pre-built toolchain instead,
+modify `local.conf` by adding:
+
 ```
+ZEPHYR_TOOLCHAIN_VARIANT = "zephyr"
+```
+
+Other Tips and Tricks for building zephyr image can be found
+[here](https://wiki.yoctoproject.org/wiki/TipsAndTricks/BuildingZephyrImages).
+
 
 ### Flashing
 
