@@ -42,7 +42,7 @@ Initialize default build configuration with bitbake-setup:
 ```console
 ./bitbake/bin/bitbake-setup init --non-interactive \
   ./meta-zephyr/zephyr-master.conf.json \
-  zephyr-default distro/zephy machine/qemu-x86
+  zephyr-default distro/zephyr machine/qemu-x86
 ```
 
 Alternatively, run bitbake-setup with interactive mode to choose for
@@ -81,6 +81,9 @@ You can then run the created "philosophers" image in qemu:
 ```console
 runqemu
 ```
+
+For a terminal-only console, pass `nographic` on the runqemu command line, for example
+`runqemu nographic`.
 
 The same sample can be built for other machines/boards, for example ARM Cortex-M3:
 
