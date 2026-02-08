@@ -1,8 +1,8 @@
 inherit qemuboot
 
-ZEPHYR_IMAGE_BASE_NAME ?= "${PN}-${MACHINE}${IMAGE_VERSION_SUFFIX}"
+ZEPHYR_IMAGE_LINK_NAME ?= "${PN}-${MACHINE}"
 
-KERNEL_IMAGETYPE = "${ZEPHYR_IMAGE_BASE_NAME}.elf"
+KERNEL_IMAGETYPE = "${ZEPHYR_IMAGE_LINK_NAME}.elf"
 QB_DEFAULT_FSTYPE = "elf"
 QB_NETWORK_DEVICE = "none"
 QB_NET = "none"
@@ -29,7 +29,7 @@ python bootconf_clean() {
 python do_bootconf_write() {
     bb.build.exec_func("do_write_qemuboot_conf", d)
 
-    qemuimage = "%s/%s.elf" % (d.getVar('DEPLOY_DIR_IMAGE', True), d.getVar('ZEPHYR_IMAGE_BASE_NAME', True))
+    qemuimage = "%s/%s.elf" % (d.getVar('DEPLOY_DIR_IMAGE', True), d.getVar('ZEPHYR_IMAGE_LINK_NAME', True))
     qemuimage_link = d.getVar('QEMU_IMAGE_LINK', True)
     if os.path.lexists(qemuimage_link):
         os.remove(qemuimage_link)
