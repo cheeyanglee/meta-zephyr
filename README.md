@@ -64,6 +64,14 @@ build the Zephyr "helloworld" sample:
 bitbake zephyr-helloworld
 ```
 
+Then, you can run the created "helloworld" image in QEMU:
+
+```console
+runqemu nographic
+```
+
+To exit QEMU when running in nographic mode, press `Ctrl+A x`.
+
 ### Building and Running other Zephyr Samples
 
 You can build other Zephyr samples. There are several sample recipes
@@ -76,21 +84,18 @@ For example, to build the
 bitbake zephyr-philosophers
 ```
 
-You can then run the created "philosophers" image in qemu:
+You can then run the created "philosophers" image in QEMU.
 
 ```console
-runqemu
+runqemu nographic
 ```
-
-For a terminal-only console, pass `nographic` on the runqemu command line, for example
-`runqemu nographic`.
 
 The same sample can be built for other machines/boards, for example ARM Cortex-M3:
 
 ```console
 bitbake-config-build enable-fragment machine/qemu-cortex-m3
 bitbake zephyr-philosophers
-runqemu
+runqemu nographic
 ```
 
 Alternatively, you can use the MACHINE variable to define the target machine,
@@ -99,7 +104,7 @@ you will need to disable the machine fragment to prevent conflict:
 ```console
 bitbake-config-build disable-fragment machine/qemu-x86
 MACHINE=qemu-cortex-m3 bitbake zephyr-philosophers
-runqemu qemu-cortex-m3
+runqemu qemu-cortex-m3 nographic
 ```
 
 The default configuration (with `zephyr` DISTRO) uses the Yocto Project toolchain
@@ -113,6 +118,13 @@ ZEPHYR_TOOLCHAIN_VARIANT = "zephyr"
 Other Tips and Tricks for building zephyr image can be found
 [here](https://wiki.yoctoproject.org/wiki/TipsAndTricks/BuildingZephyrImages).
 
+### Supported Zephyr Machines
+
+To see the list of supported Zephyr machines, type the following command:
+
+```
+bitbake-layers show-machines | grep zephyr
+```
 
 ### Flashing
 
