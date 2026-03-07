@@ -11,3 +11,8 @@ inherit cmake
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
 require recipes-kernel/zephyr-kernel/zephyr-kernel-src-${PREFERRED_VERSION_zephyr-kernel}.inc
+
+# python3-jsonschema-native is required starting from Zephyr 4.3.0
+DEPENDS += "\
+    ${@'python3-jsonschema-native' if bb.utils.vercmp_string(d.getVar('PREFERRED_VERSION_zephyr-kernel'), '4.3.0') >= 0 else ''} \
+    "
