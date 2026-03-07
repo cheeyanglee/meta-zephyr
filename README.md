@@ -216,7 +216,7 @@ Yocto configuration for a Zephyr version from the West configuration in the
 Zephyr repository. It requires the west and jinja2 Python packages to be
 installed on the host. Run it as follows:
 ```
-    $ ./meta-zephyr-core/scripts/generate-version.py x.x.x
+    $ ./meta-zephyr-core/scripts/generate-version.py -v x.x.x
 ```
 
 where x.x.x is the Zephyr version.
