@@ -163,12 +163,12 @@ metadata, you can also inject its value from command line with something like:
 
 ## Building and Running Zephyr Tests
 
-Presently only toolchains for ARM, x86, IAMCU and Nios2 are supported.
+Presently only toolchains for ARM, x86 and IAMCU are supported.
 (For ARM we use CortexM3 toolchain)
 
 To run Zephyr Test using Yocto Image Tests, ensure following in local.conf:
 ```
-    INHERIT += "testimage"
+    IMAGE_CLASSES += "testimage"
 ```
 
 You can build and test an individual existing Zephyr test.
@@ -187,9 +187,6 @@ zephyr-kernel-test.inc). For example:
 or 
     $ MACHINE=qemu-cortex-m3 bitbake zephyr-kernel-test-all
     $ MACHINE=qemu-cortex-m3 bitbake zephyr-kernel-test-all -c testimage
-or 
-    $ MACHINE=qemu-nios2 bitbake zephyr-kernel-test-all
-    $ MACHINE=qemu-nios2 bitbake zephyr-kernel-test-all -c testimage
 ```
 
 ## Generating OE Machines based on Zephyr board definitions
