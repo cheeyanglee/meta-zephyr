@@ -24,11 +24,12 @@ diff --git a/arch/x86/zefi/zefi.py b/arch/x86/zefi/zefi.py
 index b98419f8a49..790797f011a 100755
 --- a/arch/x86/zefi/zefi.py
 +++ b/arch/x86/zefi/zefi.py
-@@ -115,8 +115,9 @@ def build_elf(elf_file, include_dirs):
+@@ -115,8 +115,10 @@ def build_elf(elf_file, include_dirs):
      includes = []
      for include_dir in include_dirs:
          includes.extend(["-I", include_dir])
 +    #  Pass --sysroot path for cross compilation
++    sysrootarg = "--sysroot=" + args.sysroot
      cmd = ([args.compiler, "-shared", "-Wall", "-Werror", "-I."] + includes +
 -           ["-fno-stack-protector", "-fpic", "-mno-red-zone", "-fshort-wchar",
 +           ["-fno-stack-protector", "-fpic", "-mno-red-zone", "-fshort-wchar", sysrootarg,
