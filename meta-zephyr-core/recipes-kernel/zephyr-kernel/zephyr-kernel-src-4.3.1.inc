@@ -2,7 +2,7 @@
 
 SRCREV_FORMAT = "default"
 
-SRCREV_default = "3568e1b6d5cdd51a6b964a2a1d6d29200fea2056"
+SRCREV_default = "75f67d766726351b30199f9a2bf55803d717a3be"
 SRCREV_acpica = "8d24867bc9c9d81c81eeac59391cda59333affd4"
 SRCREV_babblesim_base = "2cfac3dca2071452ae481d115d8541880568753d"
 SRCREV_babblesim_ext_2G4_channel_NtNcable = "20a38c997f507b0aa53817aab3d73a462fff7af1"
@@ -22,7 +22,7 @@ SRCREV_cmsis-nn = "e9328d612ea3ea7d0d210d3ac16ea8667c01abdd"
 SRCREV_cmsis_6 = "30a859f44ef8ab4dc8f84b03ed586fd16ccf9d74"
 SRCREV_edtt = "c282625e694f0b53ea53e13231ea6d2f49411768"
 SRCREV_fatfs = "f4ead3bf4a6dab3a07d7b5f5315795c073db568d"
-SRCREV_hal_adi = "eeb155f7382343438114605963ae64436cc53434"
+SRCREV_hal_adi = "4a189d5d2d20267084d9066cd0c4548dd730f809"
 SRCREV_hal_afbr = "4e1eea7ea283db9d9ce529b0e9f89c0b5c2660e3"
 SRCREV_hal_ambiq = "5efc0228528a8adce5eae0d226fac85d2551eb3b"
 SRCREV_hal_atmel = "065e57c5013051c8b7f2256271349c6942bd9344"
@@ -41,7 +41,7 @@ SRCREV_hal_quicklogic = "bad894440fe72c814864798c8e3a76d13edffb6c"
 SRCREV_hal_renesas = "a279c14e196cb0904593035888a334dcd2c720bd"
 SRCREV_hal_rpi_pico = "09e957522da60581cf7958b31f8e625d969c69a5"
 SRCREV_hal_sifli = "7be421088b6fa2910917f3f8b656ded01e21b4e8"
-SRCREV_hal_silabs = "5d75cba8a1b0e9a747ae387d9ffbb1bf7cd8c529"
+SRCREV_hal_silabs = "b1510f2c86b918163070f3a540e51cac8160302d"
 SRCREV_hal_st = "9f81b4427e955885398805b7bca0da3a8cd9109c"
 SRCREV_hal_stm32 = "286dd285b5bb4fddafdfff27b5405264e5a61bfe"
 SRCREV_hal_tdk = "6727477af1e46fa43878102489b9672a9d24e39f"
@@ -59,7 +59,7 @@ SRCREV_littlefs = "8f5ca347843363882619d8f96c00d8dbd88a8e79"
 SRCREV_lora-basics-modem = "9a14f6772c1d6e303bacb2d594c8063bb804b6ee"
 SRCREV_loramac-node = "fb00b383072518c918e2258b0916c996f2d4eebe"
 SRCREV_lvgl = "b03edc8e6282a963cd312cd0b409eb5ce263ea75"
-SRCREV_mbedtls = "c5b06d89c9c498d8fc8659ce31f7e53137b6270f"
+SRCREV_mbedtls = "11c0f18ab888fed4363eeeb43fd734246dc3c93b"
 SRCREV_mcuboot = "96576b341ee19f1c3af6622256b0d4f3d408e1e3"
 SRCREV_mipi-sys-t = "5a9d6055b62edc54566d6d0034d9daec91749b98"
 SRCREV_nanopb = "7307ce399b81ddcb3c3a5dc862c52d4754328d38"
@@ -151,7 +151,7 @@ SRC_URI_ZEPHYR_UOSCORE_UEDHOC ?= "git://github.com/zephyrproject-rtos/uoscore-ue
 SRC_URI_ZEPHYR_ZCBOR ?= "git://github.com/zephyrproject-rtos/zcbor;protocol=https"
 
 SRC_URI_PATCHES ?= "\
-    file://0001-v4.3.0-x86-fix-efi-binary-generation-issue-in-cross-compila.patch;patchdir=zephyr \
+    file://0001-v4.3.1-x86-fix-efi-binary-generation-issue-in-cross-compila.patch;patchdir=zephyr \
 "
 
 SRC_URI = "\
@@ -307,4 +307,4 @@ ${S}/modules/lib/zcbor\;\
 "
 
 ZEPHYR_BRANCH = "v4.3-branch"
-PV = "4.3.0+git${SRCPV}"
+PV = "4.3.1+git${SRCPV}"
